@@ -11,20 +11,6 @@ namespace VJUI
     {
         #region Editable properties
 
-        [SerializeField] RectTransform _handleRect;
-
-        public RectTransform handleRect
-        {
-            get { return _handleRect; }
-            set {
-                if (SetPropertyUtility.SetClass(ref _handleRect, value))
-                {
-                    UpdateCachedReferences();
-                    UpdateVisuals();
-                }
-            }
-        }
-
         [SerializeField] float _minValue = 0;
 
         public float minValue
@@ -74,6 +60,17 @@ namespace VJUI
             }
         }
 
+        [SerializeField] Graphic _graphic;
+
+        public Graphic graphic
+        {
+            get { return _graphic; }
+            set {
+                if (SetPropertyUtility.SetClass(ref _graphic, value))
+                    UpdateVisuals();
+            }
+        }
+
         [Serializable] public class KnobEvent : UnityEvent<float> {} 
 
         [SerializeField] KnobEvent _onValueChanged = new KnobEvent();
@@ -85,10 +82,6 @@ namespace VJUI
         #endregion
 
         #region Private methods
-
-        // Reference cache
-        Transform _handleTransform;
-        RectTransform _handleContainer;
 
         DrivenRectTransformTracker _tracker;
 
@@ -108,48 +101,30 @@ namespace VJUI
             if (sendCallback) _onValueChanged.Invoke(newValue);
         }
 
-        void UpdateCachedReferences()
-        {
-            if (_handleRect != null)
-            {
-                _handleTransform = _handleRect.transform;
-                _handleContainer = _handleTransform.parent.GetComponent<RectTransform>();
-            }
-            else
-            {
-                _handleTransform = null;
-                _handleContainer = null;
-            }
-        }
-
         bool MayDrag(PointerEventData eventData)
         {
-            return IsActive() && IsInteractable() && _handleRect != null &&
+            return IsActive() && IsInteractable() &&
                 eventData.button == PointerEventData.InputButton.Left;
         }
 
         void UpdateVisuals()
         {
-#if UNITY_EDITOR
-            if (!Application.isPlaying) UpdateCachedReferences();
-#endif
-            _tracker.Clear();
+            if (_graphic == null) return;
 
-            if (_handleRect != null)
-            {
-                var angle = 179.9f - normalizedValue * 359.9f;
-                _tracker.Add(this, _handleRect, DrivenTransformProperties.Rotation);
-                _handleRect.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
+            _tracker.Clear();
+            _tracker.Add(this, _graphic.rectTransform, DrivenTransformProperties.Rotation);
+
+            var angle = 179.9f - normalizedValue * 359.9f;
+            _graphic.rectTransform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
         void UpdateDrag(PointerEventData eventData, Camera cam)
         {
-            if (_handleContainer == null) return;
+            var rectTransform = GetComponent<RectTransform>();
 
             Vector2 input;
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle
-                (_handleContainer, eventData.position, cam, out input)) return;
+                (rectTransform, eventData.position, cam, out input)) return;
 
             input = input - _dragPoint;
 
@@ -163,7 +138,6 @@ namespace VJUI
         protected override void OnEnable()
         {
             base.OnEnable();
-            UpdateCachedReferences();
             Set(_value, false);
             UpdateVisuals();
         }
@@ -173,6 +147,23 @@ namespace VJUI
             _tracker.Clear();
             base.OnDisable();
         }
+
+#if UNITY_EDITOR
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+
+            if (IsActive())
+            {
+                Set(_value, false);
+                UpdateVisuals();
+            }
+
+            var prefabType = UnityEditor.PrefabUtility.GetPrefabType(this);
+            if (prefabType != UnityEditor.PrefabType.Prefab && !Application.isPlaying)
+                CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
+        }
+#endif
 
         protected override void OnDidApplyAnimationProperties()
         {
@@ -190,8 +181,9 @@ namespace VJUI
             _dragPoint = Vector2.zero;
             _dragOffset = normalizedValue;
 
+            var rectTransform = GetComponent<RectTransform>();
             RectTransformUtility.ScreenPointToLocalPointInRectangle
-                (_handleContainer, eventData.position, eventData.pressEventCamera, out _dragPoint);
+                (rectTransform, eventData.position, eventData.pressEventCamera, out _dragPoint);
         }
 
         #endregion
