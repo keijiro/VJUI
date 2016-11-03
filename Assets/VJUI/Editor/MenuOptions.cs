@@ -19,7 +19,8 @@ namespace VJUI
         {
             var go = DefaultControls.CreateKnob(
                 LoadResource<Material>("Knob.mat"),
-                LoadResource<Sprite>("Knob.png")
+                LoadResource<Sprite>("Knob.png"),
+                LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
             );
 
             // Retrieve an internal method "MenuOptions.PlaceUIElementRoot".
