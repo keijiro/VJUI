@@ -15,8 +15,8 @@ struct v2f
 };
 
 sampler2D _MainTex;
-float4 _MainTex_TexelSize;
 fixed4 _Color;
+fixed3 _Highlight;
 
 v2f vert(appdata_t IN)
 {
@@ -37,8 +37,9 @@ fixed4 frag(v2f IN) : SV_Target
     half a1 = lerp(1 - uv1.x, uv1.x - 1, uv1.y < 0);
     half a2 = lerp(1 - uv2.x, uv2.x - 1, uv2.y < 0);
 
-    fixed4 c = tex2D(_MainTex, uv);
-    half br = max((a1 < a2) * c.r, c.g) * 0.95 + 0.05;
+    fixed4 c0 = tex2D(_MainTex, uv);
+    fixed3 c1 = c0.rrr * IN.color.rgb;
+    fixed3 c2 = lerp(c1, _Highlight, max(c0.g, a1 < a2));
 
-    return half4(br, br, br, c.a) * IN.color;
+    return fixed4(c2, c0.a * IN.color.a);
 }

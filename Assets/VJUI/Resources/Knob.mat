@@ -140,3 +140,7 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Highlight
+        second: {r: 0.95, g: 0.95, b: 0.95, a: 1}
