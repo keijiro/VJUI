@@ -14,6 +14,17 @@ namespace VJUI
             return AssetDatabase.LoadAssetAtPath<T>(path);
         }
 
+        static void PlaceUIElementRoot(GameObject go, MenuCommand menuCommand)
+        {
+            // Retrieve an internal method "MenuOptions.PlaceUIElementRoot".
+            var type = Type.GetType("UnityEditor.UI.MenuOptions,UnityEditor.UI");
+            var flags = BindingFlags.NonPublic | BindingFlags.Static;
+            var method = type.GetMethod("PlaceUIElementRoot", flags);
+
+            // PlaceUIElementRoot(go, menuCommand)
+            method.Invoke(null, new System.Object[]{ go, menuCommand });
+        }
+
         [MenuItem("GameObject/VJUI/Knob", false, 10)]
         static void AddKnob(MenuCommand menuCommand)
         {
@@ -22,14 +33,28 @@ namespace VJUI
                 LoadResource<Sprite>("Knob.png"),
                 LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
             );
+            PlaceUIElementRoot(go, menuCommand);
+        }
 
-            // Retrieve an internal method "MenuOptions.PlaceUIElementRoot".
-            var type = Type.GetType("UnityEditor.UI.MenuOptions,UnityEditor.UI");
-            var flags = BindingFlags.NonPublic | BindingFlags.Static;
-            var method = type.GetMethod("PlaceUIElementRoot", flags);
+        [MenuItem("GameObject/VJUI/Button", false)]
+        static void AddButton(MenuCommand menuCommand)
+        {
+            var go = DefaultControls.CreateButton(
+                LoadResource<Sprite>("Button.png"),
+                LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
+            );
+            PlaceUIElementRoot(go, menuCommand);
+        }
 
-            // PlaceUIElementRoot(go, menuCommand)
-            method.Invoke(null, new System.Object[]{ go, menuCommand });
+        [MenuItem("GameObject/VJUI/Toggle", false)]
+        static void AddToggle(MenuCommand menuCommand)
+        {
+            var go = DefaultControls.CreateToggle(
+                LoadResource<Sprite>("Toggle.png"),
+                LoadResource<Sprite>("Toggle Fill.png"),
+                LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
+            );
+            PlaceUIElementRoot(go, menuCommand);
         }
     }
 }

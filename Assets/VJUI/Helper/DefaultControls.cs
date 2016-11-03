@@ -27,14 +27,17 @@ namespace VJUI
             return (GameObject)method.Invoke(null, new System.Object[]{ name, parent });
         }
 
-        static void SetDefaultColorTransitionValues(Selectable selectable)
+        static void SetDefaultColorTransitionValues(Selectable selectable, bool whiteOnPress)
         {
             var colors = selectable.colors;
-            colors.normalColor      = new Color32(60, 60, 60, 255);
+            colors.normalColor = new Color32(60, 60, 60, 255);
             colors.highlightedColor = new Color32(70, 70, 70, 255);
-            colors.pressedColor     = new Color32(70, 70, 70, 255);
-            colors.disabledColor    = new Color32(20, 20, 20, 128);
-            colors.fadeDuration     = 0.01f;
+            if (whiteOnPress)
+                colors.pressedColor = Color.white;
+            else
+                colors.pressedColor = new Color32(70, 70, 70, 255);
+            colors.disabledColor = new Color32(20, 20, 20, 128);
+            colors.fadeDuration = 0.01f;
             selectable.colors = colors;
         }
 
@@ -50,29 +53,103 @@ namespace VJUI
 
         // Actual controls
 
+        // Knob
         public static GameObject CreateKnob(Material material, Sprite sprite, Font font)
         {
+            // UI hierarchy
             var root = CreateUIElementRoot("Knob", Vector2.one * kWidth);
             var graphic = CreateUIObject("Graphic", root);
             var label = CreateUIObject("Label", root);
 
+            // Stretch settings
             FitToParent(graphic, Vector2.zero);
             FitToParent(label, new Vector2(4, 15));
 
+            // Graphic
             var image = graphic.AddComponent<Image>();
             image.material = material;
             image.sprite = sprite;
             image.color = Color.white;
 
+            // Label
             var text = label.AddComponent<Text>();
             text.text = "Knob";
             text.alignment = TextAnchor.UpperLeft;
             text.font = font;
 
+            // Knob
             var knob = root.AddComponent<Knob>();
-            SetDefaultColorTransitionValues(knob);
+            SetDefaultColorTransitionValues(knob, false);
             knob.targetGraphic = image;
             knob.graphic = image;
+
+            return root;
+        }
+
+        // Button
+        public static GameObject CreateButton(Sprite sprite, Font font)
+        {
+            // UI hierarchy
+            var root = CreateUIElementRoot("Button", Vector2.one * kWidth);
+            var label = CreateUIObject("Label", root);
+
+            // Stretch settings
+            FitToParent(label, new Vector2(4, 15));
+
+            // Graphic
+            var image = root.AddComponent<Image>();
+            image.sprite = sprite;
+            image.color = Color.white;
+
+            // Label
+            var text = label.AddComponent<Text>();
+            text.text = "Button";
+            text.alignment = TextAnchor.UpperLeft;
+            text.font = font;
+
+            // Button
+            var button = root.AddComponent<Button>();
+            SetDefaultColorTransitionValues(button, true);
+
+            return root;
+        }
+
+        // Toggle
+        public static GameObject CreateToggle(Sprite bgSprite, Sprite fillSprite, Font font)
+        {
+            // UI hierarchy
+            var root = CreateUIElementRoot("Toggle", Vector2.one * kWidth);
+            var background = CreateUIObject("Background", root);
+            var checkmark = CreateUIObject("Checkmark", background);
+            var label = CreateUIObject("Label", root);
+
+            // Stretch settings
+            FitToParent(background, Vector2.zero);
+            FitToParent(checkmark, Vector2.zero);
+            FitToParent(label, new Vector2(4, 15));
+
+            // Background image
+            var bgImage = background.AddComponent<Image>();
+            bgImage.sprite = bgSprite;
+            bgImage.color = Color.white;
+
+            // Checkmark image
+            var ckImage = checkmark.AddComponent<Image>();
+            ckImage.sprite = fillSprite;
+            ckImage.color = new Color32(60, 60, 60, 255);
+
+            // Label
+            var text = label.AddComponent<Text>();
+            text.text = "Toggle";
+            text.alignment = TextAnchor.UpperLeft;
+            text.font = font;
+
+            // Toggle
+            var toggle = root.AddComponent<Toggle>();
+            SetDefaultColorTransitionValues(toggle, true);
+            toggle.toggleTransition = Toggle.ToggleTransition.None;
+            toggle.targetGraphic = bgImage;
+            toggle.graphic = ckImage;
 
             return root;
         }
