@@ -10,7 +10,7 @@ namespace VJUI
     {
         static T LoadResource<T>(string filename) where T : UnityEngine.Object
         {
-            var path = System.IO.Path.Combine("Assets/VJUI/Resources/", filename);
+            var path = System.IO.Path.Combine("Assets/VJUI", filename);
             return AssetDatabase.LoadAssetAtPath<T>(path);
         }
 
@@ -29,9 +29,9 @@ namespace VJUI
         static void AddKnob(MenuCommand menuCommand)
         {
             var go = DefaultControls.CreateKnob(
-                LoadResource<Material>("Knob.mat"),
-                LoadResource<Sprite>("Knob.png"),
-                LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
+                LoadResource<Material>("Shader/Knob.mat"),
+                LoadResource<Sprite>("Texture/Knob.png"),
+                LoadResource<Font>("Font/DejaVuSans-ExtraLight.ttf")
             );
             PlaceUIElementRoot(go, menuCommand);
         }
@@ -40,8 +40,8 @@ namespace VJUI
         static void AddButton(MenuCommand menuCommand)
         {
             var go = DefaultControls.CreateButton(
-                LoadResource<Sprite>("Button.png"),
-                LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
+                LoadResource<Sprite>("Texture/Button.png"),
+                LoadResource<Font>("Font/DejaVuSans-ExtraLight.ttf")
             );
             PlaceUIElementRoot(go, menuCommand);
         }
@@ -50,9 +50,9 @@ namespace VJUI
         static void AddToggle(MenuCommand menuCommand)
         {
             var go = DefaultControls.CreateToggle(
-                LoadResource<Sprite>("Toggle.png"),
-                LoadResource<Sprite>("Toggle Fill.png"),
-                LoadResource<Font>("DejaVuSans-ExtraLight.ttf")
+                LoadResource<Sprite>("Texture/Toggle.png"),
+                LoadResource<Sprite>("Texture/Toggle Fill.png"),
+                LoadResource<Font>("Font/DejaVuSans-ExtraLight.ttf")
             );
             PlaceUIElementRoot(go, menuCommand);
         }
