@@ -30,14 +30,14 @@ namespace VJUI
         static void SetDefaultColorTransitionValues(Selectable selectable, bool whiteOnPress)
         {
             var colors = selectable.colors;
-            colors.normalColor = new Color32(60, 60, 60, 255);
-            colors.highlightedColor = new Color32(70, 70, 70, 255);
+            colors.normalColor = new Color32(72, 72, 72, 255);
+            colors.highlightedColor = new Color32(72, 72, 72, 255);
             if (whiteOnPress)
                 colors.pressedColor = Color.white;
             else
-                colors.pressedColor = new Color32(70, 70, 70, 255);
+                colors.pressedColor = new Color32(72, 72, 72, 255);
             colors.disabledColor = new Color32(20, 20, 20, 128);
-            colors.fadeDuration = 0.01f;
+            colors.fadeDuration = 0.03f;
             selectable.colors = colors;
         }
 
@@ -136,7 +136,7 @@ namespace VJUI
             // Checkmark image
             var ckImage = checkmark.AddComponent<Image>();
             ckImage.sprite = fillSprite;
-            ckImage.color = new Color32(60, 60, 60, 255);
+            ckImage.color = new Color32(240, 240, 240, 255);
 
             // Label
             var text = label.AddComponent<Text>();
