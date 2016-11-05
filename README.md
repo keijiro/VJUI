@@ -15,7 +15,8 @@ touch-sensitive screen.
 
 **Button** is almost identical to the standard Button control, but it also
 provides the `OnButtonDown` event not only the `OnButtonUp` event. This is
-convenient for VJing because `OnButtonDown` is used very often.
+convenient for VJing because `OnButtonDown` is often used more than
+`OnButtonUp`.
 
 **Toggle** is a variant of the standard Toggle control. It's customized to
 use the same style to Knob and Button.
