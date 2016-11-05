@@ -6,7 +6,7 @@ using System;
 
 namespace VJUI
 {
-    [RequireComponent(typeof(RectTransform))]
+    [AddComponentMenu("UI/VJUI/VJUI Knob")]
     public class Knob : Selectable, IDragHandler, IInitializePotentialDragHandler, ICanvasElement
     {
         #region Editable properties
