@@ -84,7 +84,7 @@ namespace VJUI
         #region Private methods
 
         DrivenRectTransformTracker _tracker;
-
+        Configuration _config; 
         Vector2 _dragPoint;
         float _dragOffset;
 
@@ -126,9 +126,10 @@ namespace VJUI
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle
                 (rectTransform, eventData.position, cam, out input)) return;
 
-            input = input - _dragPoint;
+            var delta = Vector2.Dot(input - _dragPoint, Vector2.one);
+            delta *= _config.knobSensitivity * 0.005f;
 
-            normalizedValue = _dragOffset + (input.x + input.y) * 0.004f;
+            normalizedValue = _dragOffset + delta;
         }
 
         #endregion
@@ -138,6 +139,7 @@ namespace VJUI
         protected override void OnEnable()
         {
             base.OnEnable();
+            _config = Configuration.Search(gameObject);
             Set(_value, false);
             UpdateVisuals();
         }
