@@ -170,7 +170,6 @@ namespace VJUI
             // Toggle
             var toggle = root.AddComponent<Toggle>();
             SetDefaultColorTransitionValues(toggle, true);
-            toggle.toggleTransition = Toggle.ToggleTransition.None;
             toggle.targetGraphic = bgImage;
             toggle.graphic = ckImage;
 

@@ -39,14 +39,7 @@ namespace VJUI
         public float minValue
         {
             get { return _minValue; }
-            set {
-                if (_minValue != value)
-                {
-                    _minValue = value;
-                    Set(_value);
-                    UpdateVisuals();
-                }
-            }
+            set { _minValue = value; Set(_value); }
         }
 
         [SerializeField] float _maxValue = 1;
@@ -54,14 +47,7 @@ namespace VJUI
         public float maxValue
         {
             get { return _maxValue; }
-            set {
-                if (_maxValue != value)
-                {
-                    _maxValue = value;
-                    Set(_value);
-                    UpdateVisuals();
-                }
-            }
+            set { _maxValue = value; Set(_value); }
         }
 
         [SerializeField] float _value;
@@ -90,17 +76,13 @@ namespace VJUI
         public Graphic graphic
         {
             get { return _graphic; }
-            set {
-                if (_graphic == null && value == null) return;
-                if (_graphic != null && _graphic.Equals(value)) return;
-                _graphic = value;
-                UpdateVisuals();
-            }
+            set { _graphic = value; UpdateVisuals(); }
         }
 
         [Serializable] public class KnobEvent : UnityEvent<float> {} 
 
         [SerializeField] KnobEvent _onValueChanged = new KnobEvent();
+
         public KnobEvent onValueChanged {
             get { return _onValueChanged; }
             set { _onValueChanged = value; }
@@ -166,7 +148,9 @@ namespace VJUI
         protected override void OnEnable()
         {
             base.OnEnable();
+
             _config = Configuration.Search(gameObject);
+
             Set(_value, false);
             UpdateVisuals();
         }
@@ -193,13 +177,6 @@ namespace VJUI
                 CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
         }
 #endif
-
-        protected override void OnDidApplyAnimationProperties()
-        {
-            _value = Mathf.Clamp(_value, minValue, maxValue);
-            UpdateVisuals();
-            onValueChanged.Invoke(_value);
-        }
 
         public override void OnPointerDown(PointerEventData eventData)
         {
