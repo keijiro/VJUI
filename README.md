@@ -18,8 +18,8 @@ provides the `OnButtonDown` event not only the `OnButtonUp` event. This is
 convenient for VJing because `OnButtonDown` is often used more than
 `OnButtonUp`.
 
-**Toggle** is a variant of the standard Toggle control. It's customized to
-use the same style to Knob and Button.
+**Toggle** is also nearly identical to the standard Toggle control. It's
+customized to use the same style to Knob and Button.
 
 License
 -------
