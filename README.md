@@ -24,7 +24,7 @@ same look-and-feel to the Knob and Button controls.
 Installation
 ------------
 
-VJUI is implemented as a package for Unity Package Manager. To install the
+VJUI is implemented as a package for [Unity Package Manager]. To install the
 package into your project, copy `Packages/jp.keijiro.klak.vjui` from this
 example project into `Packages` of your project.
 
@@ -32,6 +32,7 @@ Also you can directly clone the `upm` branch of this repository into the
 `Packages` directory. This is convenient when using the [Git submodule] feature
 to manage the package.
 
+[Unity Package Manager]: https://docs.unity3d.com/Packages/com.unity.package-manager-ui@latest/
 [Git submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 License
