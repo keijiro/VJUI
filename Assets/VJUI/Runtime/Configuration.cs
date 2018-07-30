@@ -6,7 +6,7 @@ using UnityEngine;
 namespace VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Configuration")]
-    public class Configuration : MonoBehaviour
+    public sealed class Configuration : MonoBehaviour
     {
         #region Editable properties
 
@@ -19,7 +19,6 @@ namespace VJUI
         #endregion
 
         #region Static members
-
 
         // Search a given hierarchy for a configuration.
         static public Configuration Search(GameObject go)

@@ -10,7 +10,7 @@ namespace VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Button")]
     [RequireComponent(typeof(RectTransform))]
-    public class Button : Selectable, IPointerDownHandler, IPointerUpHandler
+    public sealed class Button : Selectable, IPointerDownHandler, IPointerUpHandler
     {
         #region Editable properties
 
@@ -28,12 +28,6 @@ namespace VJUI
             get { return _onButtonUp; }
             set { _onButtonUp = value; }
         }
-
-        #endregion
-
-        #region Private methods
-
-        protected Button() {}
 
         #endregion
 

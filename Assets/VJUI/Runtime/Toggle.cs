@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 namespace VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Toggle")]
-    public class Toggle : Selectable, IPointerClickHandler, ICanvasElement
+    public sealed class Toggle : Selectable, IPointerClickHandler, ICanvasElement
     {
         #region Editable properties
 
@@ -41,8 +41,6 @@ namespace VJUI
         #endregion
 
         #region Private methods
-
-        protected Toggle() {}
 
         void Set(bool value, bool sendCallback = true)
         {

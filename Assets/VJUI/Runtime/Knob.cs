@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 namespace VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Knob")]
-    public class Knob : Selectable, IDragHandler, IInitializePotentialDragHandler, ICanvasElement
+    public sealed class Knob : Selectable, IDragHandler, IInitializePotentialDragHandler, ICanvasElement
     {
         #region Editable properties
 
@@ -75,8 +75,6 @@ namespace VJUI
         Configuration _config;
         Vector2 _dragPoint;
         float _dragOffset;
-
-        protected Knob() {}
 
         void Set(float input, bool sendCallback = true)
         {
@@ -184,7 +182,7 @@ namespace VJUI
 
         #region IDragHandler implementation
 
-        public virtual void OnDrag(PointerEventData eventData)
+        public void OnDrag(PointerEventData eventData)
         {
             if (!MayDrag(eventData)) return;
             UpdateDrag(eventData, eventData.pressEventCamera);

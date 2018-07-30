@@ -10,7 +10,7 @@ namespace VJUI
 {
     [CustomEditor(typeof(Knob), true)]
     [CanEditMultipleObjects]
-    public class KnobEditor : SelectableEditor
+    sealed class KnobEditor : SelectableEditor
     {
         SerializedProperty _minValue;
         SerializedProperty _maxValue;

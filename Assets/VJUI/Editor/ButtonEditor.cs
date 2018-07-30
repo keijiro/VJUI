@@ -10,7 +10,7 @@ namespace VJUI
 {
     [CustomEditor(typeof(Button), true)]
     [CanEditMultipleObjects]
-    public class ButtonEditor : SelectableEditor
+    sealed class ButtonEditor : SelectableEditor
     {
         SerializedProperty _onButtonDown;
         SerializedProperty _onButtonUp;

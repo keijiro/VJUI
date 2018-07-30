@@ -8,7 +8,7 @@ using System;
 
 namespace VJUI
 {
-    public static class DefaultControls
+    static class DefaultControls
     {
         const float kWidth = 80;
 

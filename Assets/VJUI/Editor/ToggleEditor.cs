@@ -10,7 +10,7 @@ namespace VJUI
 {
     [CustomEditor(typeof(Toggle), true)]
     [CanEditMultipleObjects]
-    public class ToggleEditor : SelectableEditor
+    sealed class ToggleEditor : SelectableEditor
     {
         SerializedProperty _isOn;
         SerializedProperty _graphic;
