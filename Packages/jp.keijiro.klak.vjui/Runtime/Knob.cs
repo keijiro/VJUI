@@ -100,7 +100,7 @@ namespace Klak.VJUI
             _tracker.Clear();
             _tracker.Add(this, _graphic.rectTransform, DrivenTransformProperties.Rotation);
 
-            var angle = 179.9f - normalizedValue * 359.9f;
+            var angle = 179f - normalizedValue * 358f;
             _graphic.rectTransform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 

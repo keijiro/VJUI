@@ -276,7 +276,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: VJUI.Toggle+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: Klak.VJUI.Toggle+ToggleEvent, Klak.VJUI, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!1 &498755820
 GameObject:
@@ -438,7 +438,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: VJUI.Knob+KnobEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: Klak.VJUI.Knob+KnobEvent, Klak.VJUI, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!1 &632358684
 GameObject:
@@ -988,7 +988,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: VJUI.Button+ButtonEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: Klak.VJUI.Button+ButtonEvent, Klak.VJUI, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   _onButtonUp:
     m_PersistentCalls:
@@ -1004,7 +1004,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: VJUI.Button+ButtonEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: Klak.VJUI.Button+ButtonEvent, Klak.VJUI, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &1382141949
 MonoBehaviour:
@@ -1125,7 +1125,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1513077614}
-  m_LocalRotation: {x: 0, y: 0, z: 0.453485, w: 0.8912639}
+  m_LocalRotation: {x: 0, y: 0, z: 0.4516563, w: 0.892192}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

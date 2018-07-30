@@ -32,7 +32,7 @@ v2f vert(appdata_t IN)
 
 fixed4 frag(v2f IN) : SV_Target
 {
-    half2 uv = IN.texcoord.xy;
+    float2 uv = IN.texcoord.xy;
 
     half2 uv1 = normalize(half2(0.5 - uv.y, uv.x - 0.5));
     half2 uv2 = normalize(half2(ddx(uv.x), ddx(uv.y)));
