@@ -6,7 +6,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace VJUI
+namespace Klak.VJUI
 {
     [CustomEditor(typeof(Button), true)]
     [CanEditMultipleObjects]

@@ -1,7 +1,7 @@
 // VJUI - Custom UI controls for VJing
 // https://github.com/keijiro/VJUI
 
-Shader "VJUI/Knob"
+Shader "UI/Unlit/VJUI Knob"
 {
     Properties
     {

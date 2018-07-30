@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace VJUI
+namespace Klak.VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Knob")]
     public sealed class Knob : Selectable, IDragHandler, IInitializePotentialDragHandler, ICanvasElement

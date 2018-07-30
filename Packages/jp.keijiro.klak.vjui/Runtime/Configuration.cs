@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-namespace VJUI
+namespace Klak.VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Configuration")]
     public sealed class Configuration : MonoBehaviour

@@ -1,0 +1,12 @@
+{
+    "name": "Klak.VJUI.Editor",
+    "references": [
+        "Klak.VJUI"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

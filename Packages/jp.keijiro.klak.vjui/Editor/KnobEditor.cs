@@ -6,20 +6,24 @@ using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace VJUI
+namespace Klak.VJUI
 {
-    [CustomEditor(typeof(Toggle), true)]
+    [CustomEditor(typeof(Knob), true)]
     [CanEditMultipleObjects]
-    sealed class ToggleEditor : SelectableEditor
+    sealed class KnobEditor : SelectableEditor
     {
-        SerializedProperty _isOn;
+        SerializedProperty _minValue;
+        SerializedProperty _maxValue;
+        SerializedProperty _value;
         SerializedProperty _graphic;
         SerializedProperty _onValueChanged;
 
         protected override void OnEnable()
         {
             base.OnEnable();
-            _isOn = serializedObject.FindProperty("_isOn");
+            _minValue = serializedObject.FindProperty("_minValue");
+            _maxValue = serializedObject.FindProperty("_maxValue");
+            _value = serializedObject.FindProperty("_value");
             _graphic = serializedObject.FindProperty("_graphic");
             _onValueChanged = serializedObject.FindProperty("_onValueChanged");
         }
@@ -31,7 +35,9 @@ namespace VJUI
 
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(_isOn);
+            EditorGUILayout.PropertyField(_minValue);
+            EditorGUILayout.PropertyField(_maxValue);
+            EditorGUILayout.Slider(_value, _minValue.floatValue, _maxValue.floatValue);
             EditorGUILayout.PropertyField(_graphic);
 
             EditorGUILayout.Space();

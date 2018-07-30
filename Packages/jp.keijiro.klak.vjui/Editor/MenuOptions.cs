@@ -7,7 +7,7 @@ using System.IO;
 using System.Reflection;
 using System;
 
-namespace VJUI
+namespace Klak.VJUI
 {
     static class MenuOptions
     {

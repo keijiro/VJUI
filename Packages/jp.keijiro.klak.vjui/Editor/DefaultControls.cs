@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Reflection;
 using System;
 
-namespace VJUI
+namespace Klak.VJUI
 {
     static class DefaultControls
     {
