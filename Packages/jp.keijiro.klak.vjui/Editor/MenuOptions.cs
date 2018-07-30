@@ -13,7 +13,7 @@ namespace Klak.VJUI
     {
         static T LoadResource<T>(string filename) where T : UnityEngine.Object
         {
-            var path = System.IO.Path.Combine("Assets/VJUI/Resources", filename);
+            var path = System.IO.Path.Combine("Packages/jp.keijiro.klak.vjui/Resources", filename);
             return AssetDatabase.LoadAssetAtPath<T>(path);
         }
 
