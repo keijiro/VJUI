@@ -3,7 +3,7 @@ VJUI
 
 **VJUI** is a collection of custom UI controls specially designed for VJing.
 
-![gif](http://66.media.tumblr.com/79e789d00361cd5002d36dcc394aaaa7/tumblr_og2kkyoNgI1qio469o1_320.gif)
+![gif](https://i.imgur.com/COKYrxA.gif)
 
 It contains three custom controls:
 
@@ -11,7 +11,7 @@ It contains three custom controls:
 almost the same functionality as the standard Slider control but a bit easier
 to interact on a touch-sensitive screen.
 
-![gif](http://66.media.tumblr.com/d094fed9d1ae7f7cf1d8de5e1ce4da74/tumblr_og62oqbDjZ1qio469o1_320.gif)
+![gif](https://i.imgur.com/nktaIxg.gif)
 
 **Button** is almost identical to the standard Button control, but it also
 provides the `OnButtonDown` event not only the `OnButtonUp` event. This is
