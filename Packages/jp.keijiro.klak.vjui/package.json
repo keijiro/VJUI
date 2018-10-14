@@ -1,8 +1,8 @@
 {
     "name": "jp.keijiro.klak.vjui",
     "displayName": "VJUI",
-    "version": "0.0.1",
-    "unity": "2018.1",
+    "version": "0.0.2",
+    "unity": "2018.3",
     "description": "Custom UI controls for VJing",
     "dependencies": {}
 }
