@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 namespace Klak.VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Knob")]
+    [RequireComponent(typeof(RectTransform))]
     public sealed class Knob : Selectable, IDragHandler, IInitializePotentialDragHandler, ICanvasElement
     {
         #region Editable properties

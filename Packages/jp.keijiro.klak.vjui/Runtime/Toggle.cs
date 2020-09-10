@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 namespace Klak.VJUI
 {
     [AddComponentMenu("UI/VJing/VJUI Toggle")]
+    [RequireComponent(typeof(RectTransform))]
     public sealed class Toggle : Selectable, IPointerClickHandler, ICanvasElement
     {
         #region Editable properties

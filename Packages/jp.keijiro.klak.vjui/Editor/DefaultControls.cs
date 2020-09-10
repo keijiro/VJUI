@@ -13,21 +13,21 @@ namespace Klak.VJUI
         const float kWidth = 80;
 
         // Retrieve and invoke a private method "DefaultControls.CreateUIElementRoot".
-        static GameObject CreateUIElementRoot(string name, Vector2 size)
+        static GameObject CreateUIElementRoot(string name, Vector2 size, params Type[] components)
         {
             var type = Type.GetType("UnityEngine.UI.DefaultControls,UnityEngine.UI");
             var flags = BindingFlags.NonPublic | BindingFlags.Static;
             var method = type.GetMethod("CreateUIElementRoot", flags);
-            return (GameObject)method.Invoke(null, new System.Object[]{ name, size });
+            return (GameObject)method.Invoke(null, new System.Object[]{ name, size, components });
         }
 
         // Retrieve and invoke a private method "DefaultControls.CreateUIObject".
-        static GameObject CreateUIObject(string name, GameObject parent)
+        static GameObject CreateUIObject(string name, GameObject parent, params Type[] components)
         {
             var type = Type.GetType("UnityEngine.UI.DefaultControls,UnityEngine.UI");
             var flags = BindingFlags.NonPublic | BindingFlags.Static;
             var method = type.GetMethod("CreateUIObject", flags);
-            return (GameObject)method.Invoke(null, new System.Object[]{ name, parent });
+            return (GameObject)method.Invoke(null, new System.Object[]{ name, parent, components });
         }
 
         static void SetDefaultColorTransitionValues(Selectable selectable, bool whiteOnPress)
@@ -39,6 +39,7 @@ namespace Klak.VJUI
                 colors.pressedColor = Color.white;
             else
                 colors.pressedColor = new Color32(72, 72, 72, 255);
+            colors.selectedColor = new Color32(72, 72, 72, 255);
             colors.disabledColor = new Color32(20, 20, 20, 128);
             colors.fadeDuration = 0.03f;
             selectable.colors = colors;
@@ -60,28 +61,28 @@ namespace Klak.VJUI
         public static GameObject CreateKnob(Material material, Sprite sprite, Font font)
         {
             // UI hierarchy
-            var root = CreateUIElementRoot("Knob", Vector2.one * kWidth);
-            var graphic = CreateUIObject("Graphic", root);
-            var label = CreateUIObject("Label", root);
+            var root = CreateUIElementRoot("Knob", Vector2.one * kWidth, typeof(Knob));
+            var graphic = CreateUIObject("Graphic", root, typeof(Image));
+            var label = CreateUIObject("Label", root, typeof(Text));
 
             // Stretch settings
             FitToParent(graphic, Vector2.zero);
             FitToParent(label, new Vector2(4, 15));
 
             // Graphic
-            var image = graphic.AddComponent<Image>();
+            var image = graphic.GetComponent<Image>();
             image.material = material;
             image.sprite = sprite;
             image.color = Color.white;
 
             // Label
-            var text = label.AddComponent<Text>();
+            var text = label.GetComponent<Text>();
             text.text = "Knob";
             text.alignment = TextAnchor.UpperLeft;
             text.font = font;
 
             // Knob
-            var knob = root.AddComponent<Knob>();
+            var knob = root.GetComponent<Knob>();
             SetDefaultColorTransitionValues(knob, false);
             knob.targetGraphic = image;
             knob.graphic = image;
@@ -93,25 +94,25 @@ namespace Klak.VJUI
         public static GameObject CreateButton(Sprite sprite, Font font)
         {
             // UI hierarchy
-            var root = CreateUIElementRoot("Button", Vector2.one * kWidth);
-            var label = CreateUIObject("Label", root);
+            var root = CreateUIElementRoot("Button", Vector2.one * kWidth, typeof(Image), typeof(Button));
+            var label = CreateUIObject("Label", root, typeof(Text));
 
             // Stretch settings
             FitToParent(label, new Vector2(4, 15));
 
             // Graphic
-            var image = root.AddComponent<Image>();
+            var image = root.GetComponent<Image>();
             image.sprite = sprite;
             image.color = Color.white;
 
             // Label
-            var text = label.AddComponent<Text>();
+            var text = label.GetComponent<Text>();
             text.text = "Button";
             text.alignment = TextAnchor.UpperLeft;
             text.font = font;
 
             // Button
-            var button = root.AddComponent<Button>();
+            var button = root.GetComponent<Button>();
             SetDefaultColorTransitionValues(button, true);
 
             return root;
@@ -121,10 +122,10 @@ namespace Klak.VJUI
         public static GameObject CreateToggle(Sprite bgSprite, Sprite fillSprite, Font font)
         {
             // UI hierarchy
-            var root = CreateUIElementRoot("Toggle", Vector2.one * kWidth);
-            var background = CreateUIObject("Background", root);
-            var checkmark = CreateUIObject("Checkmark", background);
-            var label = CreateUIObject("Label", root);
+            var root = CreateUIElementRoot("Toggle", Vector2.one * kWidth, typeof(Toggle));
+            var background = CreateUIObject("Background", root, typeof(Image));
+            var checkmark = CreateUIObject("Checkmark", background, typeof(Image));
+            var label = CreateUIObject("Label", root, typeof(Text));
 
             // Stretch settings
             FitToParent(background, Vector2.zero);
@@ -132,23 +133,23 @@ namespace Klak.VJUI
             FitToParent(label, new Vector2(4, 15));
 
             // Background image
-            var bgImage = background.AddComponent<Image>();
+            var bgImage = background.GetComponent<Image>();
             bgImage.sprite = bgSprite;
             bgImage.color = Color.white;
 
             // Checkmark image
-            var ckImage = checkmark.AddComponent<Image>();
+            var ckImage = checkmark.GetComponent<Image>();
             ckImage.sprite = fillSprite;
             ckImage.color = new Color32(240, 240, 240, 255);
 
             // Label
-            var text = label.AddComponent<Text>();
+            var text = label.GetComponent<Text>();
             text.text = "Toggle";
             text.alignment = TextAnchor.UpperLeft;
             text.font = font;
 
             // Toggle
-            var toggle = root.AddComponent<Toggle>();
+            var toggle = root.GetComponent<Toggle>();
             SetDefaultColorTransitionValues(toggle, true);
             toggle.targetGraphic = bgImage;
             toggle.graphic = ckImage;
