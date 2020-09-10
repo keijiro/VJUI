@@ -34,8 +34,8 @@ fixed4 frag(v2f IN) : SV_Target
 {
     float2 uv = IN.texcoord.xy;
 
-    half2 uv1 = normalize(half2(0.5 - uv.y, uv.x - 0.5));
-    half2 uv2 = normalize(half2(ddx(uv.x), ddx(uv.y)));
+    float2 uv1 = normalize(float2(0.5 - uv.y, uv.x - 0.5));
+    float2 uv2 = normalize(float2(ddx(uv.x), ddx(uv.y)));
 
     half a1 = lerp(1 - uv1.x, uv1.x - 1, uv1.y < 0);
     half a2 = lerp(1 - uv2.x, uv2.x - 1, uv2.y < 0);
