@@ -24,40 +24,19 @@ same look-and-feel to the Knob and Button controls.
 How To Install
 --------------
 
-The VJUI package uses the [scoped registry] feature to import dependent
-packages. Please add the following sections to the package manifest file
-(`Packages/manifest.json`).
+This package uses the [scoped registry] feature to resolve package
+dependencies. Open the Package Manager page in the Project Settings window and
+add the following entry to the Scoped Registries list:
 
-To the `scopedRegistries` section:
+- Name: `Keijiro`
+- URL: `https://registry.npmjs.com`
+- Scope: `jp.keijiro`
 
-```
-{
-  "name": "Keijiro",
-  "url": "https://registry.npmjs.com",
-  "scopes": [ "jp.keijiro" ]
-}
-```
+![Scoped Registry](https://user-images.githubusercontent.com/343936/162576797-ae39ee00-cb40-4312-aacd-3247077e7fa1.png)
 
-To the `dependencies` section:
+Now you can install the package from My Registries page in the Package Manager
+window.
 
-```
-"jp.keijiro.klak.vjui": "1.0.2"
-```
-
-After changes, the manifest file should look like below:
-
-```
-{
-  "scopedRegistries": [
-    {
-      "name": "Keijiro",
-      "url": "https://registry.npmjs.com",
-      "scopes": [ "jp.keijiro" ]
-    }
-  ],
-  "dependencies": {
-    "jp.keijiro.klak.vjui": "1.0.2",
-...
-```
+![My Registries](https://user-images.githubusercontent.com/343936/162576825-4a9a443d-62f9-48d3-8a82-a3e80b486f04.png)
 
 [scoped registry]: https://docs.unity3d.com/Manual/upm-scoped.html
