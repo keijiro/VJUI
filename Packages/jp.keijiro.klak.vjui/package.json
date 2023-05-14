@@ -1,12 +1,12 @@
 {
     "author": "Keijiro Takahashi",
-    "dependencies": {},
+    "dependencies": { "com.unity.ugui": "1.0.0" },
     "description": "Custom UI controls for VJing",
     "displayName": "VJUI",
     "keywords": [ "unity" ],
     "license": "Unlicense",
     "name": "jp.keijiro.klak.vjui",
-    "unity": "2019.4",
+    "unity": "2021.3",
     "unityRelease": "0f1",
-    "version": "1.0.2"
+    "version": "1.0.3"
 }
